@@ -1,0 +1,23 @@
+name: 'action-latest-release-version'
+description: 'Fetch the latest release version for the current repository'
+author: 'alessiovierti'
+branding:
+  icon: tag
+  color: purple
+
+outputs:
+  latest-release:
+    description: 'Latest release version'
+    value: ${{ steps.fetch-latest-release-version.outputs.latest-release }}
+
+runs:
+  using: 'composite'
+  steps:
+    - id: fetch-latest-release-version
+      run: |
+        git fetch --tags
+        git fetch --prune --unshallow || true
+        export LATEST_RELEASE_VERSION=$(git describe --abbrev=0 --tags)
+        echo "::set-output name=latest-release::$(echo $LATEST_RELEASE_VERSION)"
+        echo The latest release version is \"$LATEST_RELEASE_VERSION\".
+      shell: bash
