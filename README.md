@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Fetch latest release version
         id: fetch-latest-release
-        uses: reloc8/action-latest-release-version@1.0.0
+        uses: reloc8/action-latest-release-version@1.0.1
 
       - name: Test
         run: echo ${{ steps.fetch-latest-release.outputs.latest-release }}

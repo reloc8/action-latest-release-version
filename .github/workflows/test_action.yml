@@ -1,8 +1,6 @@
 name: test
 
-on:
-  push:
-    branches: [test_action]
+on: [push, pull_requests]
 
 jobs:
   job-name:
