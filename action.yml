@@ -18,6 +18,6 @@ runs:
         git fetch --tags
         git fetch --prune --unshallow || true
         export LATEST_RELEASE_VERSION=$(git describe --abbrev=0 --tags)
-        echo "::set-output name=latest-release::$(echo $LATEST_RELEASE_VERSION)"
+        echo "latest-release=$LATEST_RELEASE_VERSION" >> $GITHUB_OUTPUT
         echo The latest release version is \"$LATEST_RELEASE_VERSION\".
       shell: bash
